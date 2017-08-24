@@ -1,6 +1,5 @@
 package query;
 
-import query.Query;
 import java.util.ArrayList;
 
 /**
