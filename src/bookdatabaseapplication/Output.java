@@ -1,8 +1,6 @@
 package bookdatabaseapplication;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
-
 /**
  *
  * @author Ben Huff
@@ -71,7 +69,7 @@ public class Output {
             case "10":
                 System.out.println("\nANSWER: The following list:\n");
                 for(int i = 0; i < output.size(); i+=2)
-                    System.out.format("%s: %s\n", output.get(i), output.get(i+1));
+                    System.out.format("-%s: %s\n", output.get(i), output.get(i+1));
                 System.out.println();
                 break;
             default:
