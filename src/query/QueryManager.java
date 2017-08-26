@@ -32,6 +32,7 @@ public class QueryManager {
         queries.put("7", QueryFactory.createQuery("7"));
         queries.put("8", QueryFactory.createQuery("8"));
         queries.put("9", QueryFactory.createQuery("9"));
+        queries.put("10", QueryFactory.createQuery("10"));
     }
     
     public Query getQuery(String query) {

@@ -68,6 +68,13 @@ public class QueryFactory {
                                     + "GROUP BY GENRE "
                                     + "ORDER BY COUNT(*) DESC "
                                     + "FETCH FIRST 1 ROW ONLY", keywords);
+            case "10":
+                keywords.add("AUTHORNAME");
+                keywords.add("Frequency");
+                return new QueryImplSQL("SELECT AUTHORNAME, COUNT(*) AS Frequency\n" 
+                                    + "FROM BooksRead\n" 
+                                    + "GROUP BY AUTHORNAME\n" 
+                                    + "ORDER BY COUNT(*) DESC", keywords);
             default:
                 return null;
         }
