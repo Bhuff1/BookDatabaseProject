@@ -1,6 +1,7 @@
 package bookdatabaseapplication;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -67,6 +68,12 @@ public class Output {
                 String numberOfBooks = output.get(1);
                 System.out.format("\nANSWER: %s is the genre Ben has read the most -- %s books in total.\n\n", genre, numberOfBooks);
                 break;
+            case "10":
+                System.out.println("\nANSWER: The following list:\n");
+                for(int i = 0; i < output.size(); i+=2)
+                    System.out.format("%s: %s\n", output.get(i), output.get(i+1));
+                System.out.println();
+                break;
             default:
                 System.out.println("ERROR--keyword not valid.\n\n");        
         }      
@@ -85,7 +92,8 @@ public class Output {
                 + "\n7) Read more than once?"
                 + "\n8) Authors he has the most books from?"
                 + "\n9) Genre read the most?"
-                + "\n\nEnter a number 1 through 9: ");
+                + "\n10) How many books has he read from each author?"
+                + "\n\nEnter a number 1 through 10: ");
     }
     
 }
