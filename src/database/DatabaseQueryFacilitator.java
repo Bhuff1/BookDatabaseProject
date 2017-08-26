@@ -46,7 +46,7 @@ public class DatabaseQueryFacilitator {
                    !response.equals("3")&&!response.equals("4")&&
                    !response.equals("5")&&!response.equals("6")&&
                    !response.equals("7")&&!response.equals("8")&&
-                   !response.equals("9")){
+                   !response.equals("9")&&!response.equals("10")){
                     System.out.println("\nInvalid response. Please try again.\n");
                     wasInvalid = true;
                 }  else {
@@ -107,6 +107,7 @@ public class DatabaseQueryFacilitator {
                     }
                 } 
             }
+            
             Output.getInstance().printOutput(response, output);
         } catch (SQLException | InvalidKeywordException | EmptyKeywordsArrayException e){
             e.printStackTrace();
