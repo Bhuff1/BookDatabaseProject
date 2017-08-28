@@ -39,24 +39,9 @@ public class DatabaseQueryFacilitator {
             
             boolean wasInvalid = false;
             
-            do {
-                Output.getInstance().printDatabaseMenu();
-                response = keyboard.nextLine();
-                if(!response.equals("1")&&!response.equals("2")&&
-                   !response.equals("3")&&!response.equals("4")&&
-                   !response.equals("5")&&!response.equals("6")&&
-                   !response.equals("7")&&!response.equals("8")&&
-                   !response.equals("9")&&!response.equals("10")){
-                    System.out.println("\nInvalid response. Please try again.\n");
-                    wasInvalid = true;
-                }  else {
-                    wasInvalid = false;
-                }
-            } while(wasInvalid);
-            
         try {
             ArrayList<String> output = new ArrayList<>();
-            
+            response = Output.getInstance().printDatabaseMenu().toString();
             Query query = QueryManager.getInstance().getQuery(response);
             ArrayList<String> keywords = new ArrayList<>();
             
@@ -102,12 +87,15 @@ public class DatabaseQueryFacilitator {
                             String frequency = Integer.toString(result.getInt("Frequency"));
                             output.add(frequency);
                             break;
+                        case "AverageLength":
+                            String averageCount = result.getString("AverageLength");
+                            output.add(averageCount);
+                            break;
                         default:
                             throw new InvalidKeywordException();  
                     }
                 } 
             }
-            
             Output.getInstance().printOutput(response, output);
         } catch (SQLException | InvalidKeywordException | EmptyKeywordsArrayException e){
             e.printStackTrace();

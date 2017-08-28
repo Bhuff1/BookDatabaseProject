@@ -1,6 +1,7 @@
 package bookdatabaseapplication;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 /**
  *
  * @author Ben Huff
@@ -18,53 +19,75 @@ public class Output {
     
     public void printOutput(String query, ArrayList<String> output){
         switch (query) {
-            case "1":
-                System.out.format("\nANSWER: Ben has read a total of %s books.\n\n", output.get(0));
-                break;
-            case "2":
+            case "1:1":
                 System.out.print("\nANSWER: Ben has read the following books:\n\n");
                 for(String s : output)
                     System.out.println("-" + s);
                 System.out.println();
                 break;
-            case "3":
-                System.out.format("\nANSWER: The following books have the highest rating from Ben:\n\n");
-                for(String s : output)
-                    System.out.println("-" + s);
-                System.out.println();
-                break;
-            case "4":
-                System.out.format("\nANSWER: The following books have the lowest rating from Ben:\n\n");
-                for(String s : output)
-                    System.out.println("-" + s);
-                System.out.println();
-                break;
-            case "5":
-                String bookTitle = output.get(0);
-                String bookLength = output.get(1);
-                System.out.format("\nANSWER: %s is the shortest book Ben's read -- %s pages.\n\n", bookTitle, bookLength);
-                break;
-            case "6":
-                bookTitle = output.get(0);
-                bookLength = output.get(1);
-                System.out.format("\nANSWER: %s is the longest book Ben's read -- %s pages.\n\n", bookTitle, bookLength);
-                break;
-            case "7":
+            case "1:2":
                 System.out.format("\nANSWER: Ben has read the following books more than once:\n\n");
                 for(String s : output)
                     System.out.println("-" + s);
                 System.out.println();
+                break;
+            case "2:1":
+                System.out.println("\nANSWER: Ben has read books from the following authors:\n\n");
+                for(String s : output)
+                    System.out.println("-" + s);
+                System.out.println();
+                break;
+            case "2:2":
+                String author = output.get(0);
+                String count = output.get(1);
+                System.out.format("\nANSWER: Ben has read %s the most -- %s books total.\n", author, count);
+                System.out.println();
+                break;
+            case "3:1":
+                System.out.println("\nANSWER: Ben has read the following genres:\n\n");
+                for(String s: output)
+                    System.out.println("-" + s);
+                System.out.println();
+                break;
+            case "3:2":
+                String genre = output.get(0);
+                String numberOfBooks = output.get(1);
+                System.out.format("\nANSWER: %s is the genre Ben has read the most -- %s books in total.\n\n", genre, numberOfBooks);
+                break;
+            case "4:1":
+                System.out.format("\nANSWER: The following books have a 5 star rating from Ben:\n\n");
+                for(String s : output)
+                    System.out.println("-" + s);
+                System.out.println();
+                break;
+            case "4:2":
+                System.out.format("\nANSWER: The following books have less than a 3 star rating from Ben:\n\n");
+                for(String s : output)
+                    System.out.println("-" + s);
+                System.out.println();
+                break;
+            case "5:1":
+                System.out.format("\nANSWER: Ben has read a total of %s books.\n\n", output.get(0));
+                break;
+            case "5:3":
+                String bookTitle = output.get(0);
+                String bookLength = output.get(1);
+                System.out.format("\nANSWER: %s is the longest book Ben's read -- %s pages.\n\n", bookTitle, bookLength);
+                break;
+             case "5:4":
+                bookTitle = output.get(0);
+                bookLength = output.get(1);
+                System.out.format("\nANSWER: %s is the shortest book Ben's read -- %s pages.\n\n", bookTitle, bookLength);
+                break;
+             case "5:5":
+                 String averageLength = output.get(0);
+                 System.out.format("\nANSWER: On average, the length of books Ben reads is %s pages.\n\n", averageLength);
                 break;
             case "8":
                 System.out.format("\nANSWER: Ben has read more than one book from the following authors:\n\n");
                 for(String s : output)
                     System.out.println("-" + s);
                 System.out.println();
-                break;
-            case "9":
-                String genre = output.get(0);
-                String numberOfBooks = output.get(1);
-                System.out.format("\nANSWER: %s is the genre Ben has read the most -- %s books in total.\n\n", genre, numberOfBooks);
                 break;
             case "10":
                 System.out.println("\nANSWER: The following list:\n");
@@ -73,25 +96,125 @@ public class Output {
                 System.out.println();
                 break;
             default:
-                System.out.println("ERROR--keyword not valid.\n\n");        
+                System.out.println("ERROR--keyword not valid.\n\n"); 
+                
         }      
     }  
     
-    public void printDatabaseMenu(){
+    public StringBuilder printDatabaseMenu(){
+        
         System.out.print("Welcome to Ben's Book Database.\n\n"
-                + "What would you like to know about the books "
-                    + "Ben's read?\n"
-                + "\n1) How many?"
-                + "\n2) Which ones?"
-                + "\n3) Highest ratings?"
-                + "\n4) Lowest ratings?"
-                + "\n5) The shortest?"
-                + "\n6) The longest?"
-                + "\n7) Read more than once?"
-                + "\n8) Authors he has the most books from?"
-                + "\n9) Genre read the most?"
-                + "\n10) How many books has he read from each author?"
-                + "\n\nEnter a number 1 through 10: ");
-    }
-    
+                + "How would you like to begin your query?\n"
+                + "\n1) Title"
+                + "\n2) Author"
+                + "\n3) Genre"
+                + "\n4) Rating"
+                + "\n5) Other"
+                + "\n\nEnter a number 1 through 5: ");
+        Scanner keyboard = new Scanner(System.in);
+        String input = keyboard.nextLine();
+        StringBuilder returnString = new StringBuilder();
+        returnString.append(input).append(":");
+        boolean wasInvalid = false;
+        switch(input) {
+            case "1": 
+                do {
+                System.out.print("\nTitle:\n"
+                + "\n1) Which books has he read?"
+                + "\n2) Which books has he read more than once?"
+                + "\n\nEnter a number 1 through 2: ");
+                input = keyboard.nextLine();
+                
+                if(!input.equals("1")&&!input.equals("2")){
+                    System.out.println("\nInvalid response. Please try again.\n");
+                    wasInvalid = true;
+                }  else {
+                    wasInvalid = false;
+                }
+                
+                } while(wasInvalid);
+                returnString.append(input);
+                break;
+            case "2":
+                do {
+                System.out.print("\nAuthor:\n"
+                + "\n1) Which authors has he read?"
+                + "\n2) Which author has he read the most from?"
+                + "\n\nEnter a number 1 through 2: ");
+                input = keyboard.nextLine();
+                
+                if(!input.equals("1")&&!input.equals("2")){
+                    System.out.println("\nInvalid response. Please try again.\n");
+                    wasInvalid = true;
+                }  else {
+                    wasInvalid = false;
+                }
+                
+                } while(wasInvalid);
+                returnString.append(input);
+
+                break;
+            case "3":
+                do {
+                System.out.print("\nGenre:\n"
+                + "\n1) Which genres has he read?"
+                + "\n2) Which genres has he read the most?"
+                + "\n\nEnter a number 1 through 2: ");
+                input = keyboard.nextLine();
+                
+                if(!input.equals("1")&&!input.equals("2")){
+                    System.out.println("\nInvalid response. Please try again.\n");
+                    wasInvalid = true;
+                }  else {
+                    wasInvalid = false;
+                }
+                } while(wasInvalid);
+                returnString.append(input);
+                break;
+            case "4":
+                do {
+                System.out.print("\nRating (1 - 5 stars):\n"
+                + "\n1) Which books did he give 5 stars?\n"
+                + "\n2) Which books got 3 stars or less?"
+                + "\n\nEnter a number 1 through 2: ");
+                input = keyboard.nextLine();
+                
+                if(!input.equals("1")&&!input.equals("2")){
+                    System.out.println("\nInvalid response. Please try again.\n");
+                    wasInvalid = true;
+                }  else {
+                    wasInvalid = false;
+                }
+                
+                } while(wasInvalid);
+                returnString.append(input);
+                break;
+            case "5":
+                do {
+                System.out.print("\nOther:\n"
+                + "\n1) How many books has he read?"
+                + "\n2) On average, how many books does he read a year?"
+                + "\n3) What's the longest book he's read?"
+                + "\n4) What's the shortest book he's read?"
+                + "\n5) What's the average length of books he reads?"
+                + "\n\nEnter a number 1 through 5: ");
+                input = keyboard.nextLine();
+                
+                if(!input.equals("1")&&!input.equals("2")&&
+                   !input.equals("3")&&!input.equals("4")&&
+                   !input.equals("5")){
+                    System.out.println("\nInvalid response. Please try again.\n");
+                    wasInvalid = true;
+                }  else {
+                    wasInvalid = false;
+                }
+                
+                } while(wasInvalid);
+                returnString.append(input);
+                break;
+            default:
+                System.out.println("ERROR--invalid entry.");
+        }
+        return returnString; 
+    }   
 }
