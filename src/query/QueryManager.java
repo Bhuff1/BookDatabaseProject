@@ -1,6 +1,5 @@
 package query;
 
-import query.Query;
 import java.util.HashMap;
 
 /**
@@ -12,7 +11,7 @@ public class QueryManager {
     private static HashMap<String, Query> queries;
     
     private QueryManager(){
-        setQueries(); 
+        loadQueries(); 
     }
     
     public static QueryManager getInstance(){
@@ -21,9 +20,8 @@ public class QueryManager {
         return instance;
     }
     
-    private void setQueries(){
+    private void loadQueries(){
         queries = new HashMap<>();
-        
         queries.put("1:1", QueryFactory.createQuery("1:1"));
         queries.put("1:2", QueryFactory.createQuery("1:2"));
         queries.put("2:1", QueryFactory.createQuery("2:1"));
@@ -33,17 +31,10 @@ public class QueryManager {
         queries.put("4:1", QueryFactory.createQuery("4:1"));
         queries.put("4:2", QueryFactory.createQuery("4:2"));
         queries.put("5:1", QueryFactory.createQuery("5:1"));
+        queries.put("5:2", QueryFactory.createQuery("5:2"));
         queries.put("5:3", QueryFactory.createQuery("5:3"));
         queries.put("5:4", QueryFactory.createQuery("5:4"));
         queries.put("5:5", QueryFactory.createQuery("5:5"));
-        queries.put("6", QueryFactory.createQuery("6"));
-        queries.put("8", QueryFactory.createQuery("8"));
-        queries.put("9", QueryFactory.createQuery("9"));
-        queries.put("10", QueryFactory.createQuery("10"));
-        
-        
-        
-
     }
     
     public Query getQuery(String query) {

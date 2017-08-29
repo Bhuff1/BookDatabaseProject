@@ -17,20 +17,22 @@ public class QueryFactory {
                 keywords.add("BOOKTITLE");
                 return new QueryImplSQL("SELECT BookTitle "
                                     + "FROM BooksRead "
-                                    + "ORDER BY BookTitle", keywords);
+                                    + "ORDER BY AUTHORNAME, DATEREAD", keywords);
             case "1:2":
                 keywords.add("BOOKTITLE");
                 return new QueryImplSQL("SELECT BookTitle " 
                                     + "FROM BooksRead "
-                                    + "WHERE REREAD = 'T'", keywords);
+                                    + "WHERE REREAD = 'T'"
+                                    + "ORDER BY AUTHORNAME, DATEREAD", keywords);
             case "2:1":
                 keywords.add("AUTHORNAME");
                 return new QueryImplSQL("SELECT DISTINCT AUTHORNAME "
-                                    + "FROM BooksRead", keywords);
+                                    + "FROM BooksRead "
+                                    + "ORDER BY AUTHORNAME", keywords);
             case "2:2":
                 keywords.add("AUTHORNAME");
-                keywords.add("Frequency");
-                return new QueryImplSQL("SELECT AUTHORNAME, COUNT(*) AS Frequency\n" 
+                keywords.add("AuthorFrequency");
+                return new QueryImplSQL("SELECT AUTHORNAME, COUNT(*) AS AuthorFrequency\n" 
                                     + "FROM BooksRead\n" 
                                     + "GROUP BY AUTHORNAME\n" 
                                     + "ORDER BY COUNT(*) DESC "
@@ -42,8 +44,8 @@ public class QueryFactory {
                                     + "ORDER BY GENRE", keywords);
             case "3:2":
                 keywords.add("GENRE");
-                keywords.add("Frequency");
-                return new QueryImplSQL("SELECT GENRE, COUNT(*) AS Frequency "
+                keywords.add("GenreFrequency");
+                return new QueryImplSQL("SELECT GENRE, COUNT(*) AS GenreFrequency "
                                     + "FROM BooksRead "
                                     + "GROUP BY GENRE "
                                     + "ORDER BY COUNT(*) DESC "
@@ -60,6 +62,16 @@ public class QueryFactory {
                                     + "FROM BooksRead "
                                     + "WHERE Rating <= 3"
                                     + "ORDER BY BookTitle", keywords);
+            case "5:1":
+                keywords.add("NumBooksRead");
+                return new QueryImplSQL("SELECT COUNT(*) AS NumBooksRead "
+                                    + "FROM BooksRead", keywords);
+            case "5:2":
+                keywords.add("AverageBookPerYear");
+                return new QueryImplSQL("SELECT COUNT(*)/7 AS AverageBookPerYear\n" 
+                                    + "FROM BooksRead\n" 
+                                    + "WHERE DATEREAD BETWEEN '2011-01-01' "
+                                    + "AND '2017-08-29'", keywords);
             case "5:3":
                 keywords.add("BOOKTITLE");
                 keywords.add("PAGECOUNT");
@@ -76,25 +88,8 @@ public class QueryFactory {
                                     + "(SELECT MIN(PAGECOUNT) FROM BooksRead)"
                                             , keywords); 
             case "5:5":
-                keywords.add("AverageLength");
-                return new QueryImplSQL("SELECT AVG(PAGECOUNT) AS AverageLength "
-                                    + "FROM BooksRead", keywords);
-            case "8":
-                keywords.add("AUTHORNAME");
-                return new QueryImplSQL("SELECT AUTHORNAME, COUNT(*) "
-                                    + "FROM BooksRead "
-                                    + "GROUP BY AUTHORNAME "
-                                    + "HAVING COUNT(*) > 1", keywords);
-            case "10":
-                keywords.add("AUTHORNAME");
-                keywords.add("Frequency");
-                return new QueryImplSQL("SELECT AUTHORNAME, COUNT(*) AS Frequency\n" 
-                                    + "FROM BooksRead\n" 
-                                    + "GROUP BY AUTHORNAME\n" 
-                                    + "ORDER BY COUNT(*) DESC", keywords);
-            case "5:1":
-                keywords.add("NUM_BOOKS_READ");
-                return new QueryImplSQL("SELECT COUNT(*) AS NUM_BOOKS_READ "
+                keywords.add("AveragePageCount");
+                return new QueryImplSQL("SELECT AVG(PAGECOUNT) AS AveragePageCount "
                                     + "FROM BooksRead", keywords);
             default:
                 return null;

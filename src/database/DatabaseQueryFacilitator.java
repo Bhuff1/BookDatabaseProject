@@ -71,8 +71,8 @@ public class DatabaseQueryFacilitator {
                             String isbn = result.getString("ISBN");
                             output.add(isbn);
                             break;
-                        case "NUM_BOOKS_READ":
-                            String sum = Integer.toString(result.getInt("NUM_BOOKS_READ"));
+                        case "NumBooksRead":
+                            String sum = Integer.toString(result.getInt("NumBooksRead"));
                             output.add(sum);
                             break;
                         case "PAGECOUNT":
@@ -83,13 +83,21 @@ public class DatabaseQueryFacilitator {
                             String genre = result.getString("GENRE");
                             output.add(genre);
                             break;
-                        case "Frequency":
-                            String frequency = Integer.toString(result.getInt("Frequency"));
+                        case "AuthorFrequency":
+                            String authorFrequency = result.getString("AuthorFrequency");
+                            output.add(authorFrequency);
+                            break;
+                        case "GenreFrequency":
+                            String frequency = Integer.toString(result.getInt("GenreFrequency"));
                             output.add(frequency);
                             break;
-                        case "AverageLength":
-                            String averageCount = result.getString("AverageLength");
+                        case "AveragePageCount":
+                            String averageCount = result.getString("AveragePageCount");
                             output.add(averageCount);
+                            break;
+                        case "AverageBookPerYear":
+                            String averageBookPerYear = result.getString("AverageBookPerYear");
+                            output.add(averageBookPerYear);
                             break;
                         default:
                             throw new InvalidKeywordException();  

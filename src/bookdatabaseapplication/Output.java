@@ -20,80 +20,76 @@ public class Output {
     public void printOutput(String query, ArrayList<String> output){
         switch (query) {
             case "1:1":
-                System.out.print("\nANSWER: Ben has read the following books:\n\n");
+                System.out.print("\nANSWER: Ben has read the following "
+                        + "books:\n\n");
                 for(String s : output)
                     System.out.println("-" + s);
                 System.out.println();
                 break;
             case "1:2":
-                System.out.format("\nANSWER: Ben has read the following books more than once:\n\n");
+                System.out.format("\nANSWER: Ben has read the following books "
+                        + "more than once:\n\n");
                 for(String s : output)
                     System.out.println("-" + s);
                 System.out.println();
                 break;
             case "2:1":
-                System.out.println("\nANSWER: Ben has read books from the following authors:\n\n");
+                System.out.println("\nANSWER: Ben has read books from the "
+                        + "following authors:\n\n");
                 for(String s : output)
                     System.out.println("-" + s);
                 System.out.println();
                 break;
             case "2:2":
-                String author = output.get(0);
-                String count = output.get(1);
-                System.out.format("\nANSWER: Ben has read %s the most -- %s books total.\n", author, count);
+                System.out.format("\nANSWER: Ben has read %s the most -- %s "
+                        + "books total.\n", output.get(0), output.get(1));
                 System.out.println();
                 break;
             case "3:1":
-                System.out.println("\nANSWER: Ben has read the following genres:\n\n");
+                System.out.println("\nANSWER: Ben has read the following "
+                        + "genres:\n\n");
                 for(String s: output)
                     System.out.println("-" + s);
                 System.out.println();
                 break;
             case "3:2":
-                String genre = output.get(0);
-                String numberOfBooks = output.get(1);
-                System.out.format("\nANSWER: %s is the genre Ben has read the most -- %s books in total.\n\n", genre, numberOfBooks);
+                System.out.format("\nANSWER: %s is the genre Ben has read "
+                        + "the most -- %s books in total.\n\n", output.get(0)
+                        , output.get(1));
                 break;
             case "4:1":
-                System.out.format("\nANSWER: The following books have a 5 star rating from Ben:\n\n");
+                System.out.format("\nANSWER: The following books have "
+                        + "a 5 star rating from Ben:\n\n");
                 for(String s : output)
                     System.out.println("-" + s);
                 System.out.println();
                 break;
             case "4:2":
-                System.out.format("\nANSWER: The following books have less than a 3 star rating from Ben:\n\n");
+                System.out.format("\nANSWER: The following books have less "
+                        + "than a 3 star rating from Ben:\n\n");
                 for(String s : output)
                     System.out.println("-" + s);
                 System.out.println();
                 break;
             case "5:1":
-                System.out.format("\nANSWER: Ben has read a total of %s books.\n\n", output.get(0));
+                System.out.format("\nANSWER: Ben has read a total of %s "
+                        + "books.\n\n", output.get(0));
+                break;
+            case "5:2":
+                System.out.format("\nANSWER: Ben reads an average of %s books "
+                        + "a year.\n\n", output.get(0));
                 break;
             case "5:3":
-                String bookTitle = output.get(0);
-                String bookLength = output.get(1);
-                System.out.format("\nANSWER: %s is the longest book Ben's read -- %s pages.\n\n", bookTitle, bookLength);
+                System.out.format("\nANSWER: %s is the longest book Ben's "
+                        + "read -- %s pages.\n\n", output.get(0), output.get(1));
                 break;
              case "5:4":
-                bookTitle = output.get(0);
-                bookLength = output.get(1);
-                System.out.format("\nANSWER: %s is the shortest book Ben's read -- %s pages.\n\n", bookTitle, bookLength);
+                System.out.format("\nANSWER: %s is the shortest book Ben's "
+                        + "read -- %s pages.\n\n", output.get(0), output.get(1));
                 break;
              case "5:5":
-                 String averageLength = output.get(0);
-                 System.out.format("\nANSWER: On average, the length of books Ben reads is %s pages.\n\n", averageLength);
-                break;
-            case "8":
-                System.out.format("\nANSWER: Ben has read more than one book from the following authors:\n\n");
-                for(String s : output)
-                    System.out.println("-" + s);
-                System.out.println();
-                break;
-            case "10":
-                System.out.println("\nANSWER: The following list:\n");
-                for(int i = 0; i < output.size(); i+=2)
-                    System.out.format("-%s: %s\n", output.get(i), output.get(i+1));
-                System.out.println();
+                 System.out.format("\nANSWER: On average, the length of books "
+                         + "Ben reads is %s pages.\n\n", output.get(0));
                 break;
             default:
                 System.out.println("ERROR--keyword not valid.\n\n"); 
@@ -102,7 +98,6 @@ public class Output {
     }  
     
     public StringBuilder printDatabaseMenu(){
-        
         System.out.print("Welcome to Ben's Book Database.\n\n"
                 + "How would you like to begin your query?\n"
                 + "\n1) Title"
@@ -174,7 +169,7 @@ public class Output {
             case "4":
                 do {
                 System.out.print("\nRating (1 - 5 stars):\n"
-                + "\n1) Which books did he give 5 stars?\n"
+                + "\n1) Which books did he give 5 stars?"
                 + "\n2) Which books got 3 stars or less?"
                 + "\n\nEnter a number 1 through 2: ");
                 input = keyboard.nextLine();
