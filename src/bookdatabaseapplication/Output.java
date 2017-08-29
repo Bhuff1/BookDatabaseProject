@@ -98,6 +98,10 @@ public class Output {
     }  
     
     public StringBuilder printDatabaseMenu(){
+        boolean wasInvalid = false;
+        String input;
+        Scanner keyboard;
+        do {
         System.out.print("Welcome to Ben's Book Database.\n\n"
                 + "How would you like to begin your query?\n"
                 + "\n1) Title"
@@ -106,11 +110,23 @@ public class Output {
                 + "\n4) Rating"
                 + "\n5) Other"
                 + "\n\nEnter a number 1 through 5: ");
-        Scanner keyboard = new Scanner(System.in);
-        String input = keyboard.nextLine();
+        keyboard = new Scanner(System.in);
+        input = keyboard.nextLine();
+        
+        if(!input.equals("1")&&!input.equals("2")&&
+           !input.equals("3")&&!input.equals("4")&&     
+           !input.equals("5")){
+                    System.out.println("\nInvalid response. Please try again.\n");
+                    wasInvalid = true;
+                }  else {
+                    wasInvalid = false;
+                }
+        
+        } while(wasInvalid);
+        
         StringBuilder returnString = new StringBuilder();
         returnString.append(input).append(":");
-        boolean wasInvalid = false;
+        
         switch(input) {
             case "1": 
                 do {
