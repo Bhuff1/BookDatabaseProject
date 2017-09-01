@@ -68,8 +68,8 @@ public class QueryFactory {
                                     + "FROM BooksRead", keywords);
             case "5:2":
                 keywords.add("AverageBookPerYear");
-                return new QueryImplSQL("SELECT COUNT(*)/7 AS AverageBookPerYear\n" 
-                                    + "FROM BooksRead\n" 
+                return new QueryImplSQL("SELECT COUNT(*)/7 AS AverageBookPerYear " 
+                                    + "FROM BooksRead " 
                                     + "WHERE DATEREAD BETWEEN '2011-01-01' "
                                     + "AND '2017-08-29'", keywords);
             case "5:3":
