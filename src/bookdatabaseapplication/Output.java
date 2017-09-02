@@ -102,7 +102,7 @@ public class Output {
         String input;
         Scanner keyboard;
         do {
-        System.out.print("Welcome to Ben's Book Database.\n\n"
+        System.out.print("\nWelcome to Ben's Book Database.\n\n"
                 + "How would you like to begin your query?\n"
                 + "\n1) Title"
                 + "\n2) Author"
