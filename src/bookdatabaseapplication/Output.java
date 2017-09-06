@@ -41,8 +41,16 @@ public class Output {
                 System.out.println();
                 break;
             case "2:2":
-                System.out.format("\nANSWER: Ben has read %s the most -- %s "
-                        + "books total.\n", output.get(0), output.get(1));
+                System.out.format("\nANSWER: Ben has read the "
+                        + "most books from %s.\n", output.get(0));
+                System.out.println();
+                break;
+            case "2:3":
+                System.out.println("\nANSWER:\n");
+                for(int i = 0; i <= output.size()-2; i+=2){
+                    System.out.println("-" + output.get(i) + " authors: " + 
+                            output.get(i+1) + " books");
+                }
                 System.out.println();
                 break;
             case "3:1":
@@ -54,8 +62,7 @@ public class Output {
                 break;
             case "3:2":
                 System.out.format("\nANSWER: %s is the genre Ben has read "
-                        + "the most -- %s books in total.\n\n", output.get(0)
-                        , output.get(1));
+                        + "the most.\n\n", output.get(0));
                 break;
             case "4:1":
                 System.out.format("\nANSWER: The following books have "
@@ -92,8 +99,7 @@ public class Output {
                          + "Ben reads is %s pages.\n\n", output.get(0));
                 break;
             default:
-                System.out.println("ERROR--keyword not valid.\n\n"); 
-                
+                System.out.println("ERROR--keyword not valid.\n\n");         
         }      
     }  
     
@@ -151,10 +157,12 @@ public class Output {
                 System.out.print("\nAuthor:\n"
                 + "\n1) Which authors has he read?"
                 + "\n2) Which author has he read the most from?"
-                + "\n\nEnter a number 1 through 2: ");
+                + "\n3) What nationalities are the authors, and how many has he read from each?"
+                + "\n\nEnter a number 1 through 3: ");
                 input = keyboard.nextLine();
                 
-                if(!input.equals("1")&&!input.equals("2")){
+                if(!input.equals("1")&&!input.equals("2")&&
+                   !input.equals("3")){
                     System.out.println("\nInvalid response. Please try again.\n");
                     wasInvalid = true;
                 }  else {

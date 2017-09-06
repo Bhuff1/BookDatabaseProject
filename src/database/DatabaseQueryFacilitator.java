@@ -6,7 +6,6 @@ import query.QueryManager;
 import utility.NullReferenceException;
 import utility.InvalidKeywordException;
 import utility.EmptyKeywordsArrayException;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -55,49 +54,47 @@ public class DatabaseQueryFacilitator {
             while(result.next()){
                 for(String keyword : keywords) {
                     switch (keyword) {
-                        case "BOOKTITLE":
-                            String title = result.getString("BookTitle");
-                            output.add(title);
+                        case "author_frequency":
+                            output.add(result.getString("author_frequency"));
+                            break;
+                        case "AUTHOR_NAME":
+                            output.add(result.getString("AUTHOR_NAME"));
+                            break;
+                        case "AUTHOR_NATIONALITY":
+                            output.add(result.getString("AUTHOR_NATIONALITY"));
+                            break;
+                        case "average_book_per_year":
+                            output.add(result.getString("average_book_per_year"));
+                            break;
+                        case "average_page_count":
+                            output.add(result.getString("average_page_count"));
                             break;
                         case "DATEREAD":
-                            Date date = result.getDate("DateRead");
-                            output.add(date.toString());
-                            break;
-                        case "AUTHORNAME":
-                            String author = result.getString("AuthorName");
-                            output.add(author);
-                            break;
-                        case "ISBN":
-                            String isbn = result.getString("ISBN");
-                            output.add(isbn);
-                            break;
-                        case "NumBooksRead":
-                            String sum = Integer.toString(result.getInt("NumBooksRead"));
-                            output.add(sum);
-                            break;
-                        case "PAGECOUNT":
-                            String lowest = Integer.toString(result.getInt("PAGECOUNT"));
-                            output.add(lowest);
+                            output.add(result.getDate("DateRead").toString());
                             break;
                         case "GENRE":
-                            String genre = result.getString("GENRE");
-                            output.add(genre);
+                            output.add(result.getString("GENRE"));
                             break;
-                        case "AuthorFrequency":
-                            String authorFrequency = result.getString("AuthorFrequency");
-                            output.add(authorFrequency);
+                        case "genre_frequency":
+                            output.add(Integer.toString(result.getInt("genre_frequency")));
                             break;
-                        case "GenreFrequency":
-                            String frequency = Integer.toString(result.getInt("GenreFrequency"));
-                            output.add(frequency);
+                        case "ISBN":
+                            output.add(result.getString("ISBN"));
                             break;
-                        case "AveragePageCount":
-                            String averageCount = result.getString("AveragePageCount");
-                            output.add(averageCount);
+                        case "num_books_read":
+                            output.add(Integer.toString(result.getInt("num_books_read")));
                             break;
-                        case "AverageBookPerYear":
-                            String averageBookPerYear = result.getString("AverageBookPerYear");
-                            output.add(averageBookPerYear);
+                        case "num_nationality":
+                            output.add(Integer.toString(result.getInt("num_nationality")));
+                            break;
+                        case "num_books":
+                            output.add(Integer.toString(result.getInt("num_books")));
+                            break;
+                        case "PAGECOUNT":
+                            output.add(Integer.toString(result.getInt("PAGECOUNT")));
+                            break;
+                        case "TITLE":
+                            output.add(result.getString("Title"));
                             break;
                         default:
                             throw new InvalidKeywordException();  

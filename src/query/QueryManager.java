@@ -26,6 +26,7 @@ public class QueryManager {
         queries.put("1:2", QueryFactory.createQuery("1:2"));
         queries.put("2:1", QueryFactory.createQuery("2:1"));
         queries.put("2:2", QueryFactory.createQuery("2:2"));
+        queries.put("2:3", QueryFactory.createQuery("2:3"));
         queries.put("3:1", QueryFactory.createQuery("3:1"));
         queries.put("3:2", QueryFactory.createQuery("3:2"));
         queries.put("4:1", QueryFactory.createQuery("4:1"));
