@@ -48,8 +48,14 @@ public class Output {
             case "2:3":
                 System.out.println("\nANSWER:\n");
                 for(int i = 0; i <= output.size()-2; i+=2){
-                    System.out.println("-" + output.get(i) + " authors: " + 
-                            output.get(i+1) + " books");
+                    int value = Integer.parseInt(output.get(i+1));
+                    if(value > 1){
+                        System.out.println("-" + output.get(i) + " authors: " + 
+                            value + " books");
+                    } else {
+                        System.out.println("-" + output.get(i) + " authors: " + 
+                            value + " book");
+                    }
                 }
                 System.out.println();
                 break;
